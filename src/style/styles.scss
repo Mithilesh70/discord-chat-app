@@ -1,0 +1,159 @@
+/* You can add global styles to this file, and also import other style files */
+/* Import Bootstrap CSS */
+@import "custom-bootstrap";
+@import "ngx-toastr/toastr";
+@import "@angular/cdk/overlay-prebuilt.css";
+
+@import "@fortawesome/fontawesome-free/css/all.min.css";
+
+:root {
+  --#{$prefix}modal-zindex: #{$zindex-modal};
+  --#{$prefix}modal-width: #{$modal-md};
+  --#{$prefix}modal-padding: #{$modal-inner-padding};
+  --#{$prefix}modal-margin: #{$modal-dialog-margin};
+  --#{$prefix}modal-color: #{$modal-content-color};
+  --#{$prefix}modal-bg: #{$modal-content-bg};
+  --#{$prefix}modal-border-color: #{$modal-content-border-color};
+  --#{$prefix}modal-border-width: #{$modal-content-border-width};
+  --#{$prefix}modal-border-radius: #{$modal-content-border-radius};
+  --#{$prefix}modal-box-shadow: #{$modal-content-box-shadow-xs};
+  --#{$prefix}modal-inner-border-radius: #{$modal-content-inner-border-radius};
+  --#{$prefix}modal-header-padding-x: #{$modal-header-padding-x};
+  --#{$prefix}modal-header-padding-y: #{$modal-header-padding-y};
+  --#{$prefix}modal-header-padding: #{$modal-header-padding}; // Todo in v6: Split this padding into x and y
+  --#{$prefix}modal-header-border-color: #{$modal-header-border-color};
+  --#{$prefix}modal-header-border-width: #{$modal-header-border-width};
+  --#{$prefix}modal-title-line-height: #{$modal-title-line-height};
+  --#{$prefix}modal-footer-gap: #{$modal-footer-margin-between};
+  --#{$prefix}modal-footer-bg: #{$modal-footer-bg};
+  --#{$prefix}modal-footer-border-color: #{$modal-footer-border-color};
+  --#{$prefix}modal-footer-border-width: #{$modal-footer-border-width};
+  --#{$prefix}backdrop-zindex: #{$zindex-modal-backdrop};
+  --#{$prefix}backdrop-bg: #{$modal-backdrop-bg};
+  --#{$prefix}backdrop-opacity: #{$modal-backdrop-opacity};
+}
+
+// .content-wrapper {
+//   margin-top: 3.25rem;
+//   height: calc(100vh - 3.25rem);
+//   overflow: auto;
+// }
+
+.required::after {
+  content: "*";
+  color: red;
+}
+
+.employee-profile {
+  height: 3rem;
+  width: 3rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.navbar-expand-lg .navbar-nav .dropdown-menu {
+  position: absolute;
+  left: -35px;
+}
+
+.layout-wrapper {
+  display: flex;
+  .sidebar {
+    margin-top: 3.25rem;
+    height: calc(100vh - 3.25rem);
+    overflow: auto;
+    width: 7rem;
+    transition: width 500ms;
+    background-color: #2b2d31;
+  }
+  .content-wrapper {
+    margin-top: 3.25rem;
+    height: calc(100vh - 3.25rem);
+    overflow: auto;
+    transition: width 500ms;
+    width: calc(100vw - 7rem);
+  }
+  &.close {
+    .sidebar {
+      width: 0;
+    }
+    .content-wrapper {
+      width: 100vw;
+    }
+  }
+}
+
+.navbar {
+  background-color: #313338;
+  height: 3.25rem;
+}
+
+.chat-container {
+  height: 100%;
+  background-color: #313338;
+  // width: calc(100vw - 7rem);
+  .message-box {
+    width: calc(100vw - 7rem);
+    .form-control {
+      background-color: #2b2d31;
+      border: #2b2d31;
+      box-shadow: none;
+      color: white;
+    }
+
+    .send-btn {
+      position: absolute;
+      right: 45px;
+      bottom: 32px;
+    }
+
+    .form-control::placeholder {
+      /* Chrome, Firefox, Opera, Safari 10.1+ */
+      color: #dbdee1;
+      opacity: 1; /* Firefox */
+    }
+
+    .form-control:-ms-input-placeholder {
+      /* Internet Explorer 10-11 */
+      color: #dbdee1;
+    }
+
+    .form-control::-ms-input-placeholder {
+      /* Microsoft Edge */
+      color: #dbdee1;
+    }
+  }
+}
+
+.room-logo {
+  mix-blend-mode: color;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.messages-container {
+  max-height: calc(100vh - 136px);
+  overflow: auto;
+
+  .user-circle {
+    background-color: aliceblue;
+    height: 25px;
+    width: 25px;
+  }
+
+  .tool-icons {
+    font-size: 12px;
+    opacity: 50%;
+  }
+
+  .message-bubble {
+    background-color: #dbdee1;
+    border-radius: 1px 10px 10px 10px;
+    max-width: calc(100vw - 17rem);
+    .user-name {
+      font-size: 14px;
+    }
+  }
+}

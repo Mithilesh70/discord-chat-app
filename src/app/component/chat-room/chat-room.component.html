@@ -1,0 +1,73 @@
+<div class="chat-container bg-dark">
+  <div class="messages-container d-flex flex-column" #messagesContainer>
+    @if(messageList().length){ @for (user of messageList(); track $index) {
+    <div class="d-flex flex-row m-2 gap-2">
+      <div
+        class="user-circle d-flex align-items-center justify-content-center rounded rounded-circle"
+      >
+        <i class="fa-regular fa-user"></i>
+      </div>
+      <div class="message-bubble d-flex flex-column">
+        <span class="text-dark px-2 d-flex align-items-center gap-1">
+          <span class="user-name fw-semibold">{{ user.user_name }}</span>
+        </span>
+        <span class="message-card p-1 ps-2">
+          @if(!user.is_delete){
+          {{ user.message }}
+          }@else {
+          <span class="opacity-50"> This message has been deleted! </span>
+          }
+        </span>
+      </div>
+
+      @if(selectedUser()?.user_id===user.user_id && !user.is_delete){
+
+      <div class="d-flex gap-2 align-items-center tool-icons">
+        <i
+          class="fa-solid fa-pen text-white cursor-pointer"
+          (click)="editMessage(user)"
+        ></i>
+        <i
+          class="fa-solid fa-trash text-white cursor-pointer"
+          (click)="deleteMessage(user)"
+        ></i>
+      </div>
+      }
+    </div>
+    } }@else {
+    <div
+      class="d-flex align-items-center justify-content-center py-4 text-white"
+    >
+      <h1>No messages available here yet......</h1>
+    </div>
+    }
+  </div>
+  <div class="message-box position-absolute bottom-0">
+    <div class="px-4 pb-4" [ngClass]="isEditMode ? 'bg-white pt-1' : 'pt-4'">
+      @if (isEditMode) {
+      <div
+        class="text-black d-flex justify-content-between align-items-center px-2"
+      >
+        <span>Editing Message</span>
+        <span class="cursor-pointer" (click)="exitEditMode()">
+          <i class="fa-solid fa-xmark"></i>
+        </span>
+      </div>
+      }
+      <input
+        #messageField
+        type="text"
+        placeholder="Type message here..."
+        class="form-control"
+        id="meaage-box"
+        [formControl]="message"
+        (keydown.enter)="sendMessage()"
+      />
+      @if(this.message.value?.trim()){
+      <span class="send-btn cursor-pointer" (click)="sendMessage()">
+        <i class="fa-solid fa-paper-plane text-white"></i>
+      </span>
+      }
+    </div>
+  </div>
+</div>

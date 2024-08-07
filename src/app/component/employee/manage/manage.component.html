@@ -1,0 +1,92 @@
+<div class="row justify-content-center w-100 mx-0 my-4">
+  <div class="col-12 col-md-8 col-lg-6">
+    <div class="card">
+      <div class="card-header">
+        <h4>{{ employeeId() ? "Edit Employee" : "Add Employee" }}</h4>
+      </div>
+      <div class="card-body h-100">
+        <form
+          [formGroup]="employeeForm"
+          (ngSubmit)="manageEmployee()"
+          class="h-100"
+        >
+          <div class="d-flex flex-column justify-content-between h-100">
+            <div>
+              <!-- Name -->
+              <div class="mb-3">
+                <label for="name" class="required">Name</label>
+                <input
+                  type="text"
+                  id="name"
+                  class="form-control form-control-lg"
+                  placeholder="Name"
+                  formControlName="name"
+                  appAlphaNumerics
+                />
+                @if(isSubmitted &&employeeForm.controls['name'].errors&&
+                employeeForm.controls['name'].errors['required']){
+                <label for="" class="text-danger">
+                  Please enter value for name.
+                </label>
+                }
+              </div>
+
+              <!-- Age -->
+              <div class="mb-3">
+                <label for="age" class="required">Age</label>
+                <input
+                  type="text"
+                  id="age"
+                  class="form-control form-control-lg"
+                  placeholder="Age"
+                  formControlName="age"
+                  appNumberOnly
+                />
+                @if(isSubmitted &&employeeForm.controls['age'].errors&&
+                employeeForm.controls['age'].errors['required']){
+                <label for="" class="text-danger">
+                  Please enter value for age.
+                </label>
+                }
+              </div>
+              <!-- Salary -->
+              <div class="mb-3">
+                <label for="salary" class="required">Salary</label>
+                <input
+                  type="text"
+                  id="salary"
+                  class="form-control form-control-lg"
+                  placeholder="Salary"
+                  formControlName="salary"
+                  appNumberOnly
+                />
+                @if(isSubmitted &&employeeForm.controls['salary'].errors&&
+                employeeForm.controls['salary'].errors['required']){
+                <label for="" class="text-danger">
+                  Please enter value for salary.
+                </label>
+                }
+              </div>
+
+              <div class="my-4 row justify-content-center">
+                <div class="col-6">
+                  <a
+                    class="btn btn-outline-secondary w-100"
+                    [routerLink]="['../']"
+                  >
+                    Cancel
+                  </a>
+                </div>
+                <div class="col-6">
+                  <button class="btn btn-outline-primary w-100" type="submit">
+                    {{ employeeId() ? "Update" : "Add Employee" }}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

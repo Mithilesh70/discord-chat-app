@@ -1,0 +1,55 @@
+<nav class="navbar navbar-expand fixed-top text-white">
+  <div class="container-fluid">
+    <!-- <a class="navbar-brand text-white" routerLink="/">{{ brandText }}</a>
+    <span (click)="sidebarService.toggleSidebar()" role="button"
+      ><i class="fa fa-bars"></i>3</span
+    > -->
+    <div class="logo">
+      <img src="/assets/discord.png" height="25px" alt="logo" />
+    </div>
+    @if(enableSearch){
+    <input
+      class="form-control ms-4 w-25"
+      type="search"
+      placeholder="Search by Employee name...."
+      aria-label="Search"
+      [formControl]="searchControl"
+    />
+    }
+    <div class="collapse navbar-collapse justify-content-end">
+      <span class="pe-2">Please change the user from here</span>
+      <ul class="navbar-nav">
+        @if(usersList.length ){
+        <div class="d-inline-block" ngbDropdown #myDrop="ngbDropdown">
+          <button
+            type="button"
+            class="btn btn-dark me-2"
+            id="dropdownManual"
+            ngbDropdownAnchor
+            (click)="myDrop.isOpen() ? myDrop.close() : myDrop.open()"
+          >
+            {{ chatService.selectedUser()?.user_name }}
+          </button>
+          <div ngbDropdownMenu aria-labelledby="dropdownManual">
+            @for (item of usersList; track $index) {
+            <button ngbDropdownItem (click)="selectUser(item)">
+              {{ item.user_name }}
+            </button>
+            }
+          </div>
+        </div>
+        }
+      </ul>
+    </div>
+  </div>
+</nav>
+<div
+  class="layout-wrapper"
+  [ngClass]="{ close: sidebarService.isSidebarClose() }"
+>
+  <div class="sidebar"><app-sidebar></app-sidebar></div>
+
+  <div class="content-wrapper">
+    <router-outlet> </router-outlet>
+  </div>
+</div>
